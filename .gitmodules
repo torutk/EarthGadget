@@ -1,0 +1,3 @@
+[submodule "javafx-gadgetsupport"]
+	path = javafx-gadgetsupport
+	url = https://github.com/torutk/javafx-gadgetsupport.git
