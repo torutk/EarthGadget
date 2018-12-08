@@ -92,4 +92,7 @@ public class EarthGadgetApp extends Application {
         return animation;
     }
     
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
