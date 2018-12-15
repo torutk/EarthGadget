@@ -1223,11 +1223,18 @@ is divided into following sections:
                 <unpackagemapper from="*" to="*.class"/>
             </mappedresources>
         </resources>
-        <property location="${run.modules.dir}" name="run.modules.dir.location"/>
-        <pathconvert property="module.name">
-            <fileset dir="${run.modules.dir}" includes="**/${toString:main.class.relativepath}"/>
-            <regexpmapper from="\Q${run.modules.dir.location}${file.separator}\E([^${file.separator.string}]+)\Q${file.separator}\E.*\.class" to="\1"/>
+        <pathconvert property="run.modules.dir.location.unix" dirsep="/">
+            <path location="${run.modules.dir}"/>
         </pathconvert>
+        <pathconvert property="main.class.absolutepath.unix" dirsep="/">
+            <fileset dir="${run.modules.dir}" includes="**/${toString:main.class.relativepath}"/>            
+        </pathconvert>
+        <loadresource property="module.name">
+            <propertyresource name="main.class.absolutepath.unix"/>
+            <filterchain>
+                <replaceregex pattern="${run.modules.dir.location.unix}/([^/]+)/.*\.class" replace="\1"/>
+            </filterchain>
+        </loadresource>
     </target>
     <target depends="-main-module-set" name="-main-module-check">
         <fail message="Could not determine module of the main class and module.name is not set">

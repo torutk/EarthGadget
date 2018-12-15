@@ -1,5 +1,5 @@
 /*
- *  Copyright © 2018 toru
+ * Copyright © 2018 TAKAHASHI,Toru
  */
 
 module com.torutk.gadget.earth {
