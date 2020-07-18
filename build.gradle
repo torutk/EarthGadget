@@ -1,0 +1,33 @@
+plugins {
+    id 'application'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    modularity.inferModulePath = true
+}
+
+dependencies {
+    implementation project(':javafx-gadgetsupport')
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+	resources {
+            srcDirs = ['src']
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'com.torutk.gadget.earth'
+    mainClass = 'com.torutk.gadget.earth.EarthGadgetApp'
+}
