@@ -25,3 +25,6 @@ nbproject/UPDATED.txt
 
 # Ignore Gradle build output directory
 build
+
+# IntelliJ IDEA
+.idea/
