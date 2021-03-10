@@ -1,7 +1,7 @@
 @echo off
 
 REM increment the version number each creation.
-set APP_VERSION=0.2.5
+set APP_VERSION=0.3.0
 
 %JAVA_HOME%\bin\jpackage ^
 --type msi ^
