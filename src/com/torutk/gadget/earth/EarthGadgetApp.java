@@ -31,12 +31,12 @@ public class EarthGadgetApp extends Application {
     private static final double FRAMES_PER_SECOND = 5;
     private static final double AZIMUTH_SPEED_PER_SECOND = 2; // degree
     
-    private Translate cameraTranslate = new Translate(0, 0, -300);
-    private Rotate cameraRotateY = new Rotate(0, Rotate.Y_AXIS);
+    private final Translate cameraTranslate = new Translate(0, 0, -300);
+    private final Rotate cameraRotateY = new Rotate(0, Rotate.Y_AXIS);
     
     @Override
     public void start(Stage primaryStage) {
-        new TinyGadgetSupport(primaryStage, Preferences.userNodeForPackage(this.getClass()));
+        var support = TinyGadgetSupport.ofTaskbarless(primaryStage, Preferences.userNodeForPackage(this.getClass()));
         Group root = new Group();
         Sphere earth = new Sphere(100);
         root.getChildren().add(earth);
@@ -65,9 +65,10 @@ public class EarthGadgetApp extends Application {
         Scene scene = new Scene(root, 300, 250);
         scene.setCamera(camera);
         
-        primaryStage.setTitle("Hello Earth!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        var stage = support.getTransparentStage();
+        stage.setTitle("Hello Earth!");
+        stage.setScene(scene);
+        stage.show();
         
         Timeline animation = createAnimation();
         animation.play();
